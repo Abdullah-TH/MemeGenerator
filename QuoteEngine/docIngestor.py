@@ -9,5 +9,5 @@ class DOCIngestor(IngestorInterface):
         pass
 
     @classmethod
-    def parse(cls, path: str) -> list[QuoteModel]:
+    def parse(cls, path: str) -> List[QuoteModel]:
         pass
