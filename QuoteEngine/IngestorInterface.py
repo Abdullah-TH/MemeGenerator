@@ -1,5 +1,6 @@
+from typing import List
 from abc import ABC
-from .quoteModel import QuoteModel
+from quoteModel import QuoteModel
 
 
 class IngestorInterface(ABC):
@@ -9,5 +10,5 @@ class IngestorInterface(ABC):
         pass
 
     @classmethod
-    def parse(cls, path: str) -> list[QuoteModel]:
+    def parse(cls, path: str) -> List[QuoteModel]:
         pass
