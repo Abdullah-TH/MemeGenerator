@@ -1,4 +1,3 @@
-import re
 from typing import List
 from ingestorInterface import IngestorInterface
 from quoteModel import QuoteModel
