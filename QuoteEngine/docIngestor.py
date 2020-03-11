@@ -2,6 +2,7 @@ from typing import List
 from ingestorInterface import IngestorInterface
 from quoteModel import QuoteModel
 from docx import Document
+from quoteBuilder import QuoteBuilder
 
 
 class DOCIngestor(IngestorInterface):
@@ -13,15 +14,6 @@ class DOCIngestor(IngestorInterface):
 
     @classmethod
     def parse(cls, path: str) -> List[QuoteModel]:
-        result = []
         doc = Document(path)
-        for paragraph in doc.paragraphs:
-            if paragraph.text == "":
-                continue
-            body = cls.__parse_line(paragraph.text, '"', '"')
-            author = cls.__parse_line(paragraph.text, "- ", "")
-            result.append(QuoteModel(author, body))
-
-    @classmethod
-    def __parse_line(cls, string, start, end):
-        return string[string.find(start) + len(start):string.rfind(end)]
+        lines = [p.text for p in doc.paragraphs if p.text != '']
+        return QuoteBuilder.parse_quote(lines, '- ', '', '"', '"')

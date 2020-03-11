@@ -2,6 +2,7 @@ from typing import List
 from ingestorInterface import IngestorInterface
 from quoteModel import QuoteModel
 from pdfminer import high_level as pdf
+from quoteBuilder import QuoteBuilder
 
 
 class PDFIngestor(IngestorInterface):
@@ -13,17 +14,6 @@ class PDFIngestor(IngestorInterface):
 
     @classmethod
     def parse(cls, path: str) -> List[QuoteModel]:
-        result = []
         with open(path, 'rb') as file:
-            text = pdf.extract_text(path).strip().split("\n")
-            for line in text:
-                body = cls.__parse_line(line, '"', '"')
-                author = cls.__parse_line(line, "- ", "")
-                quote = QuoteModel(author, body)
-                result.append(quote)
-
-        return result
-
-    @classmethod
-    def __parse_line(cls, string, start, end):
-        return string[string.find(start) + len(start):string.rfind(end)]
+            lines = pdf.extract_text(path).strip().split("\n")
+            return QuoteBuilder.parse_quote(lines, "- ", "", '"', '"')
