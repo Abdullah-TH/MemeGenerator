@@ -2,7 +2,7 @@ from typing import List
 from ingestorInterface import IngestorInterface
 from quoteModel import QuoteModel
 from csvIngestor import CSVIngestor
-from docIngestor import DOCIngestor
+from docxIngestor import DocxIngestor
 from pdfIngestor import PDFIngestor
 from textIngestor import TextIngestor
 
@@ -12,7 +12,7 @@ class Ingestor(IngestorInterface):
     @classmethod
     def can_ingest(cls, path: str) -> bool:
         return CSVIngestor.can_ingest(path) or \
-               DOCIngestor.can_ingest(path) or \
+               DocxIngestor.can_ingest(path) or \
                PDFIngestor.can_ingest(path) or \
                TextIngestor.can_ingest(path)
 
@@ -21,7 +21,7 @@ class Ingestor(IngestorInterface):
         if path[-3:].lower() == 'csv':
             return CSVIngestor.parse(path)
         elif path[-4:].lower() == 'docx':
-            return DOCIngestor.parse(path)
+            return DocxIngestor.parse(path)
         elif path[-3:].lower() == 'pdf':
             return PDFIngestor.parse(path)
         elif path[-3:].lower() == 'txt':

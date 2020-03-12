@@ -5,7 +5,7 @@ from docx import Document
 from quoteBuilder import QuoteBuilder
 
 
-class DOCIngestor(IngestorInterface):
+class DocxIngestor(IngestorInterface):
 
     file_extension = 'docx'
 
