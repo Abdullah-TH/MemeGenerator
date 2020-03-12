@@ -4,7 +4,7 @@ from quoteModel import QuoteModel
 from quoteBuilder import QuoteBuilder
 
 
-class TXTIngestor(IngestorInterface):
+class TextIngestor(IngestorInterface):
 
     file_extension = 'txt'
 
