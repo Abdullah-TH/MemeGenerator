@@ -6,10 +6,7 @@ from quoteModel import QuoteModel
 
 class CSVIngestor(IngestorInterface):
 
-    @classmethod
-    def can_ingest(cls, path: str) -> bool:
-        file_extension = path[-3:].lower()
-        return file_extension == "csv"
+    file_extension = 'csv'
 
     @classmethod
     def parse(cls, path: str) -> List[QuoteModel]:

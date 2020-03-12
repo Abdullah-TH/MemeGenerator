@@ -7,10 +7,7 @@ from quoteBuilder import QuoteBuilder
 
 class PDFIngestor(IngestorInterface):
 
-    @classmethod
-    def can_ingest(cls, path: str) -> bool:
-        file_extension = path[-3:].lower()
-        return file_extension == "pdf"
+    file_extension = 'pdf'
 
     @classmethod
     def parse(cls, path: str) -> List[QuoteModel]:

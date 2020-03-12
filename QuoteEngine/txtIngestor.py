@@ -6,10 +6,7 @@ from quoteBuilder import QuoteBuilder
 
 class TXTIngestor(IngestorInterface):
 
-    @classmethod
-    def can_ingest(cls, path: str) -> bool:
-        file_extension = path[-3:].lower()
-        return file_extension == "txt"
+    file_extension = 'txt'
 
     @classmethod
     def parse(cls, path: str) -> List[QuoteModel]:

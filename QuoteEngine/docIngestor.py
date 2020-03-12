@@ -7,10 +7,7 @@ from quoteBuilder import QuoteBuilder
 
 class DOCIngestor(IngestorInterface):
 
-    @classmethod
-    def can_ingest(cls, path: str) -> bool:
-        file_extension = path[-4:].lower()
-        return file_extension == "docx"
+    file_extension = 'docx'
 
     @classmethod
     def parse(cls, path: str) -> List[QuoteModel]:
