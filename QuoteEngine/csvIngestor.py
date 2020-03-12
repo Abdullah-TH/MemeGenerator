@@ -10,6 +10,14 @@ class CSVIngestor(IngestorInterface):
 
     @classmethod
     def parse(cls, path: str) -> List[QuoteModel]:
+        """
+        Generate a list of QuoteModel from a csv file, given that
+        the csv file is structured as 2 columns with headings of author
+        and body respectively
+
+        :param path: a string of the csv file system path
+        :return: list of QuoteModel instances
+        """
         result = []
         with open(path) as file:
             data = pandas.read_csv(file)

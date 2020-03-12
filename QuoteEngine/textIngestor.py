@@ -10,6 +10,14 @@ class TextIngestor(IngestorInterface):
 
     @classmethod
     def parse(cls, path: str) -> List[QuoteModel]:
+        """
+        Generate a list of QuoteModel from a txt file, given that
+        the quotes text are written in the following format:
+        Quote text - Author name
+
+        :param path: a string of the txt file system path
+        :return: list of QuoteModel instances
+        """
         with open(path, encoding='utf-8-sig') as file:
             lines = file.read().splitlines()
             return QuoteBuilder.parse_quote(lines, "- ", "", "", " -")
