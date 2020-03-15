@@ -1,6 +1,7 @@
 from PIL import Image
 from PIL import ImageDraw
 from PIL import ImageFont
+from random import randrange
 
 
 class MemeEngine:
@@ -19,7 +20,9 @@ class MemeEngine:
 
         img_draw = ImageDraw.Draw(img)
         font = ImageFont.truetype('./fonts/01211_AHDSANSB.ttf', size=20)
-        img_draw.text((10, 30), f'{text} - {author}', font=font, fill='white')
+        random_x = randrange(width / 2)
+        random_y = randrange(height - 30)
+        img_draw.text((random_x, random_y), f'{text} - {author}', font=font, fill='white')
 
         img.save(self.output_path)
         return self.output_path
