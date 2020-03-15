@@ -20,5 +20,6 @@ class IngestorInterface(ABC):
         return file_extension == cls.file_extension
 
     @classmethod
+    @abstractmethod
     def parse(cls, path: str) -> List[QuoteModel]:
         pass
