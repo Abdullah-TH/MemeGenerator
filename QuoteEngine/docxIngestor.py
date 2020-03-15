@@ -19,6 +19,7 @@ class DocxIngestor(IngestorInterface):
         :param path: a string of the docx file system path
         :return: list of QuoteModel instances
         """
+        super().parse(path)
         doc = Document(path)
         lines = [p.text for p in doc.paragraphs if p.text != '']
         return QuoteBuilder.parse_quote(lines, '- ', '', '"', '"')

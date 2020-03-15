@@ -21,6 +21,7 @@ class PDFIngestor(IngestorInterface):
         :param path: a string of the pdf file system path
         :return: list of QuoteModel instances
         """
+        super().parse(path)
         command = r'{} "{}" "{}" -enc UTF-8'.format('pdftotext', path, cls.txt_file_path)
         subprocess.call(command, shell=True, stderr=subprocess.STDOUT)
         cls.__clean_txt_file()

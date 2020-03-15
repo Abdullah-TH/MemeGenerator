@@ -1,5 +1,5 @@
 from typing import List
-from abc import ABC
+from abc import ABC, abstractmethod
 from quoteModel import QuoteModel
 
 
@@ -22,4 +22,5 @@ class IngestorInterface(ABC):
     @classmethod
     @abstractmethod
     def parse(cls, path: str) -> List[QuoteModel]:
-        pass
+        if not cls.can_ingest(path):
+            raise Exception(f'Cannot ingest file {path}')

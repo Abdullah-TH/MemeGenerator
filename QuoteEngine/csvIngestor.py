@@ -18,6 +18,7 @@ class CSVIngestor(IngestorInterface):
         :param path: a string of the csv file system path
         :return: list of QuoteModel instances
         """
+        super().parse(path)
         result = []
         with open(path) as file:
             data = pandas.read_csv(file)
@@ -25,3 +26,4 @@ class CSVIngestor(IngestorInterface):
                 result.append(QuoteModel(data.get('author')[i], data.get('body')[i]))
 
         return result
+    
