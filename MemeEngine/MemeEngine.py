@@ -30,6 +30,7 @@ class MemeEngine:
         if width > 500:
             raise ValueError('width should be at most 500px')
 
+        img_extension = img_path.split('.')[-1]
         img = Image.open(img_path)
 
         ratio = width / float(img.size[0])
@@ -42,5 +43,5 @@ class MemeEngine:
         random_y = randrange(height - 30)
         img_draw.text((random_x, random_y), f'{text} - {author}', font=font, fill='white')
 
-        img.save(self.output_path)
+        img.save(self.output_path + f'/meme.{img_extension}')
         return self.output_path
