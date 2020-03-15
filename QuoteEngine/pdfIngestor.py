@@ -23,9 +23,12 @@ class PDFIngestor(IngestorInterface):
         """
         super().parse(path)
         command = r'{} "{}" "{}" -enc UTF-8'.format('pdftotext', path, cls.txt_file_path)
-        subprocess.call(command, shell=True, stderr=subprocess.STDOUT)
-        cls.__clean_txt_file()
-        return TextIngestor.parse(cls.txt_file_path)
+        try:
+            subprocess.call(command, shell=True, stderr=subprocess.STDOUT)
+            cls.__clean_txt_file()
+            return TextIngestor.parse(cls.txt_file_path)
+        except Exception:
+            raise Exception('Command "pdftotext" not found, please install it first')
 
     @classmethod
     def __clean_txt_file(cls):
