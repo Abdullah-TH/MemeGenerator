@@ -1,4 +1,4 @@
-from quoteModel import QuoteModel
+from .quoteModel import QuoteModel
 
 
 class QuoteBuilder:

@@ -1,9 +1,9 @@
 import subprocess
 
 from typing import List
-from ingestorInterface import IngestorInterface
-from quoteModel import QuoteModel
-from textIngestor import TextIngestor
+from .ingestorInterface import IngestorInterface
+from .quoteModel import QuoteModel
+from .textIngestor import TextIngestor
 
 
 class PDFIngestor(IngestorInterface):

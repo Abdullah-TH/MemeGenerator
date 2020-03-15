@@ -1,8 +1,8 @@
 from typing import List
-from ingestorInterface import IngestorInterface
-from quoteModel import QuoteModel
 from docx import Document
-from quoteBuilder import QuoteBuilder
+from .ingestorInterface import IngestorInterface
+from .quoteModel import QuoteModel
+from .quoteBuilder import QuoteBuilder
 
 
 class DocxIngestor(IngestorInterface):
