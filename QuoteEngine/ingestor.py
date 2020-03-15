@@ -9,18 +9,8 @@ from textIngestor import TextIngestor
 
 class Ingestor(IngestorInterface):
 
-    @classmethod
-    def can_ingest(cls, path: str) -> bool:
-        """
-        Determine if the file type can be ingested (parsed)
-
-        :param path: a string of the file system path
-        :return: True if the file can be parsed, False otherwise
-        """
-        return CSVIngestor.can_ingest(path) or \
-               DocxIngestor.can_ingest(path) or \
-               PDFIngestor.can_ingest(path) or \
-               TextIngestor.can_ingest(path)
+    allowed_extensions = ['csv', 'docx', 'pdf', 'txt']
+    ingestors = [CSVIngestor, DocxIngestor, PDFIngestor, TextIngestor]
 
     @classmethod
     def parse(cls, path: str) -> List[QuoteModel]:
@@ -32,13 +22,10 @@ class Ingestor(IngestorInterface):
         :param path: a string of the file system path
         :return: list of QuoteModel instances
         """
-        if path[-3:].lower() == 'csv':
-            return CSVIngestor.parse(path)
-        elif path[-4:].lower() == 'docx':
-            return DocxIngestor.parse(path)
-        elif path[-3:].lower() == 'pdf':
-            return PDFIngestor.parse(path)
-        elif path[-3:].lower() == 'txt':
-            return TextIngestor.parse(path)
-        else:
-            raise Exception('File type is not supported')
+        super().parse(path)
+
+        for ingestor in cls.ingestors:
+            if ingestor.can_ingest(path):
+                return ingestor.parse(path)
+
+        raise Exception(f'Cannot ingest file {path}')

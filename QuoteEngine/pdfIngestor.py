@@ -8,7 +8,7 @@ from textIngestor import TextIngestor
 
 class PDFIngestor(IngestorInterface):
 
-    file_extension = 'pdf'
+    allowed_extensions = ['pdf']
     txt_file_path = '_data/DogQuotes/DogQuotesPDF.txt'
 
     @classmethod

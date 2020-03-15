@@ -6,7 +6,7 @@ from quoteBuilder import QuoteBuilder
 
 class TextIngestor(IngestorInterface):
 
-    file_extension = 'txt'
+    allowed_extensions = ['txt']
 
     @classmethod
     def parse(cls, path: str) -> List[QuoteModel]:

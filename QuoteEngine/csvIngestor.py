@@ -6,7 +6,7 @@ from quoteModel import QuoteModel
 
 class CSVIngestor(IngestorInterface):
 
-    file_extension = 'csv'
+    allowed_extensions = ['csv']
 
     @classmethod
     def parse(cls, path: str) -> List[QuoteModel]:
@@ -26,4 +26,3 @@ class CSVIngestor(IngestorInterface):
                 result.append(QuoteModel(data.get('author')[i], data.get('body')[i]))
 
         return result
-    

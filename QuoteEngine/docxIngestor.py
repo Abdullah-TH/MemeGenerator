@@ -7,7 +7,7 @@ from quoteBuilder import QuoteBuilder
 
 class DocxIngestor(IngestorInterface):
 
-    file_extension = 'docx'
+    allowed_extensions = ['docx']
 
     @classmethod
     def parse(cls, path: str) -> List[QuoteModel]:
