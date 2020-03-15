@@ -10,6 +10,18 @@ class MemeEngine:
         self.output_path = path
 
     def make_meme(self, img_path, text, author, width=500):
+        """
+        Generate a meme image with overlaying text and author
+
+        :param img_path: a path of the image you want to apply the text on
+        :param text: a string that will be drawn on the image as the body of the quote
+        :param author: a string that will be drawn on the image as the author of the quote
+        :param width: an int represent the width of the generated image in pixels (default 500px)
+        :param author:
+
+        :return: list of QuoteModel instances
+        """
+
         if width > 500:
             raise Exception('width should be at most 500px')
 
@@ -41,6 +53,3 @@ class MemeEngine:
             return
 
         return self.output_path
-
-
-MemeEngine('./meme.jpg').make_meme('_data/photos/dog/xander_1.jpg', "Body texxxxt", "Author")
