@@ -1,10 +1,12 @@
 import random
 import os
 import requests
+
+from presenter import Presenter
 from flask import Flask, render_template, abort, request
 
 # @TODO Import your Ingestor and MemeEngine classes
-from QuoteEngine import Ingestor
+# presenter.py uses the Ingestor, and this file use the Presenter
 from MemeEngine import MemeEngine
 
 app = Flask(__name__)
@@ -12,32 +14,8 @@ app = Flask(__name__)
 meme = MemeEngine('./static')
 
 
-def setup():
-    """ Load all resources """
-
-    quote_files = ['./_data/DogQuotes/DogQuotesTXT.txt',
-                   './_data/DogQuotes/DogQuotesDOCX.docx',
-                   './_data/DogQuotes/DogQuotesPDF.pdf',
-                   './_data/DogQuotes/DogQuotesCSV.csv']
-
-    # TODO: Use the Ingestor class to parse all files in the
-    # quote_files variable
-    quotes = []
-    for file in quote_files:
-        quotes.extend(Ingestor.parse(file))
-
-    images_path = "./_data/photos/dog/"
-
-    # TODO: Use the pythons standard library os class to find all
-    # images within the images images_path directory
-    imgs = []
-    for root, dirs, files in os.walk(images_path):
-        imgs = [os.path.join(root, name) for name in files]
-
-    return quotes, imgs
-
-
-quotes, imgs = setup()
+quotes = Presenter.get_quotes()
+imgs = Presenter.get_images()
 
 
 @app.route('/')

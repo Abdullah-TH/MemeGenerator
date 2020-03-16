@@ -1,10 +1,10 @@
-import os
 import random
 
 from argparse import ArgumentParser
+from presenter import Presenter
 
 # @TODO Import your Ingestor and MemeEngine classes
-from QuoteEngine import Ingestor
+# presenter.py uses the Ingestor, and this file use the Presenter
 from MemeEngine import MemeEngine
 from QuoteEngine import QuoteModel
 
@@ -15,31 +15,20 @@ def generate_meme(path=None, body=None, author=None):
     quote = None
 
     if path is None:
-        images = "./_data/photos/dog/"
-        imgs = []
-        for root, dirs, files in os.walk(images):
-            imgs = [os.path.join(root, name) for name in files]
-
+        imgs = Presenter.get_images()
         img = random.choice(imgs)
     else:
         img = path
 
     if body is None:
-        quote_files = ['./_data/DogQuotes/DogQuotesTXT.txt',
-                       './_data/DogQuotes/DogQuotesDOCX.docx',
-                       './_data/DogQuotes/DogQuotesPDF.pdf',
-                       './_data/DogQuotes/DogQuotesCSV.csv']
-        quotes = []
-        for f in quote_files:
-            quotes.extend(Ingestor.parse(f))
-
+        quotes = Presenter.get_quotes()
         quote = random.choice(quotes)
     else:
         if author is None:
             raise Exception('Author Required if Body is Used')
         quote = QuoteModel(author, body)
 
-    meme = MemeEngine('./')
+    meme = MemeEngine('./tmp')
     path = meme.make_meme(img, quote.body, quote.author)
     return path
 
