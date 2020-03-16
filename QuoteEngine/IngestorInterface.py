@@ -22,4 +22,4 @@ class IngestorInterface(ABC):
     @abstractmethod
     def parse(cls, path: str) -> List[QuoteModel]:
         if not cls.can_ingest(path):
-            raise Exception(f'Cannot ingest file {path}')
+            raise ValueError(f'Cannot ingest file {path}')
