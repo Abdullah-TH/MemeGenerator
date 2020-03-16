@@ -9,7 +9,32 @@ from MemeEngine import MemeEngine
 class Presenter:
 
     @classmethod
-    def get_quotes(cls):
+    def generate_meme(cls, output_path, image_path=None, body=None, author=None):
+        """ Generate a meme given an path and a quote """
+        img = None
+        quote = None
+
+        if image_path is None:
+            imgs = cls.__get_images()
+            img = random.choice(imgs)
+        else:
+            img = image_path
+
+        if body is None:
+            quotes = cls.__get_quotes()
+            quote = random.choice(quotes)
+        else:
+            if author is None:
+                raise Exception('Author Required if Body is Used')
+            quote = QuoteModel(author, body)
+
+        meme = MemeEngine(output_path)
+        path = meme.make_meme(img, quote.body, quote.author)
+
+        return path
+
+    @classmethod
+    def __get_quotes(cls):
         """ Load quotes resources to list """
 
         quote_files = ['./_data/DogQuotes/DogQuotesTXT.txt',
@@ -23,7 +48,7 @@ class Presenter:
         return quotes
 
     @classmethod
-    def get_images(cls):
+    def __get_images(cls):
         """ Load images resources to list of paths """
 
         images_path = "./_data/photos/dog/"
@@ -32,28 +57,3 @@ class Presenter:
             imgs = [os.path.join(root, name) for name in files]
 
         return imgs
-
-    @classmethod
-    def generate_meme(cls, output_path, image_path=None, body=None, author=None):
-        """ Generate a meme given an path and a quote """
-        img = None
-        quote = None
-
-        if image_path is None:
-            imgs = cls.get_images()
-            img = random.choice(imgs)
-        else:
-            img = image_path
-
-        if body is None:
-            quotes = cls.get_quotes()
-            quote = random.choice(quotes)
-        else:
-            if author is None:
-                raise Exception('Author Required if Body is Used')
-            quote = QuoteModel(author, body)
-
-        meme = MemeEngine(output_path)
-        path = meme.make_meme(img, quote.body, quote.author)
-
-        return path
