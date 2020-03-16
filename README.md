@@ -23,6 +23,8 @@ All parameters are optional, if one is not specified, a random when will be gene
   --author AUTHOR  Quote author to add to the image
 `
 
+All generated images from this tool will be stored on the `./tmp` directory.
+
 ### Local Website
 To use a local website with GUI interface, you can run:
 `python3 app.py`
@@ -30,6 +32,8 @@ You will get an output in your terminal with a URL like this:
 ` Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
 `
 copy and past the URL to your browser to start using the web tool.
+
+All generated images from this website will be stored on the `./static` directory.
 
 ## Modules Overview
 There are two modules within this project `QuoteEngine` and `MemeEngine`
