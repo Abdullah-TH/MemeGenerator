@@ -9,4 +9,7 @@ meme.jpg
 /cat.jpg
 meme.png
 tmp/*
-/tmp/96588120.png
+!tmp/.gitkeep
+static/*
+!static/.gitkeep
+
