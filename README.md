@@ -12,16 +12,19 @@ Navigate to the project root folder in your terminal then run:
 `python3 meme.py`
 This will generate a random image with random text and random author.
 To use your own image, text and author you can specify arguments to the program like:
-`python --path "Your_image_path" --body "Your_body_text --author "name_of_author"`
+```
+python --path "Your_image_path" --body "Your_body_text --author "name_of_author"
+```
 
 All parameters are optional, if one is not specified, a random when will be generated.
 
-`optional arguments:
+```
+optional arguments:
   -h, --help       show this help message and exit
   --path PATH      Path to an image file
   --body BODY      Quote body to add to the image
   --author AUTHOR  Quote author to add to the image
-`
+```
 
 All generated images from this tool will be stored on the `./tmp` directory.
 
