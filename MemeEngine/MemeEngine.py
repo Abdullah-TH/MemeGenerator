@@ -43,5 +43,6 @@ class MemeEngine:
         random_y = randrange(height - 30)
         img_draw.text((random_x, random_y), f'{text} - {author}', font=font, fill='white')
 
-        img.save(self.output_path + f'/meme.{img_extension}')
-        return self.output_path
+        output_image_path = self.output_path + f'/meme.{img_extension}'
+        img.save(output_image_path)
+        return output_image_path
