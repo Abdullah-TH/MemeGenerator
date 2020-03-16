@@ -41,7 +41,12 @@ class MemeEngine:
         font = ImageFont.truetype('./fonts/01211_AHDSANSB.ttf', size=20)
         random_x = randrange(width / 2)
         random_y = randrange(height - 30)
-        img_draw.text((random_x, random_y), f'{text} - {author}', font=font, fill='white')
+        img_draw.text((random_x, random_y),
+                      f'{text} \n- {author}',
+                      font=font,
+                      fill='white',
+                      stroke_width=1,
+                      stroke_fill='black')
 
         output_image_path = self.output_path + f'/meme{randrange(1000)}.{img_extension}'
         img.save(output_image_path)
