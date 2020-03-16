@@ -6,16 +6,9 @@ from presenter import Presenter
 from flask import Flask, render_template, abort, request
 
 # @TODO Import your Ingestor and MemeEngine classes
-# presenter.py uses the Ingestor, and this file use the Presenter
-from MemeEngine import MemeEngine
+# imported in Presenter
 
 app = Flask(__name__)
-
-meme = MemeEngine('./static')
-
-
-quotes = Presenter.get_quotes()
-imgs = Presenter.get_images()
 
 
 @app.route('/')
@@ -27,12 +20,7 @@ def meme_rand():
     # 1. select a random image from imgs array
     # 2. select a random quote from the quotes array
 
-    img = random.choice(imgs)
-    quote = random.choice(quotes)
-    path = meme.make_meme(img, quote.body, quote.author)
-    print('path: ' + path)
-    print('quote: ' + str(quote))
-    print('img: ' + img)
+    path = Presenter.generate_meme('./static')
     return render_template('meme.html', path=path)
 
 

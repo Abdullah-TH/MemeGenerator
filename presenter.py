@@ -1,6 +1,9 @@
 import os
+import random
 
 from QuoteEngine import Ingestor
+from QuoteEngine import QuoteModel
+from MemeEngine import MemeEngine
 
 
 class Presenter:
@@ -29,3 +32,28 @@ class Presenter:
             imgs = [os.path.join(root, name) for name in files]
 
         return imgs
+
+    @classmethod
+    def generate_meme(cls, output_path, image_path=None, body=None, author=None):
+        """ Generate a meme given an path and a quote """
+        img = None
+        quote = None
+
+        if image_path is None:
+            imgs = cls.get_images()
+            img = random.choice(imgs)
+        else:
+            img = image_path
+
+        if body is None:
+            quotes = cls.get_quotes()
+            quote = random.choice(quotes)
+        else:
+            if author is None:
+                raise Exception('Author Required if Body is Used')
+            quote = QuoteModel(author, body)
+
+        meme = MemeEngine(output_path)
+        path = meme.make_meme(img, quote.body, quote.author)
+
+        return path
