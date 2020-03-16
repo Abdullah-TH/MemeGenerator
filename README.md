@@ -1,4 +1,4 @@
-#Meme Generator
+# Meme Generator
 A command line tool and a web site (run locally) to generates memes images.
 
 ## Install
