@@ -44,15 +44,18 @@ def meme_post():
     image_url = request.form.get('image_url')
     author = request.form.get('author')
     body = request.form.get('body')
+    tmp = None
 
-    response = requests.get(image_url, allow_redirects=True)
-    tmp = f'./tmp/{random.randint(0, 100000000)}.png'
-    open(tmp, 'wb').write(response.content)
+    if image_url:
+        response = requests.get(image_url, allow_redirects=True)
+        tmp = f'./tmp/{random.randint(0, 100000000)}.png'
+        open(tmp, 'wb').write(response.content)
 
-    path = meme.make_meme(tmp, body, author)
+    path = Presenter.generate_meme('./static', tmp, body, author)
 
-    os.remove(tmp)
-    print('path: ' + path)
+    if tmp is not None:
+        os.remove(tmp)
+
     return render_template('meme.html', path=path)
 
 
