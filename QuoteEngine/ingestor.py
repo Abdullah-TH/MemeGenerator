@@ -22,7 +22,7 @@ class Ingestor(IngestorInterface):
         :param path: a string of the file system path
         :return: list of QuoteModel instances
         """
-        super().parse(path)
+        super().raise_error_if_cannot_ingest(path)
 
         for ingestor in cls.ingestors:
             if ingestor.can_ingest(path):

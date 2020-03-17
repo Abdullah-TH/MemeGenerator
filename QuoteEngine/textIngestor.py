@@ -18,7 +18,7 @@ class TextIngestor(IngestorInterface):
         :param path: a string of the txt file system path
         :return: list of QuoteModel instances
         """
-        super().parse(path)
+        super().raise_error_if_cannot_ingest(path)
         with open(path, encoding='utf-8-sig') as file:
             lines = file.read().splitlines()
             return QuoteBuilder.parse_quote(lines, "- ", "", "", " -")

@@ -21,5 +21,10 @@ class IngestorInterface(ABC):
     @classmethod
     @abstractmethod
     def parse(cls, path: str) -> List[QuoteModel]:
+        raise NotImplementedError
+
+    @classmethod
+    def raise_error_if_cannot_ingest(cls, path):
+        """ Raise ValueError if path cannot be ingested"""
         if not cls.can_ingest(path):
             raise ValueError(f'Cannot ingest file {path}')

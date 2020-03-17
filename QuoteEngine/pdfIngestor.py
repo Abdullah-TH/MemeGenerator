@@ -20,7 +20,7 @@ class PDFIngestor(IngestorInterface):
         :param path: a string of the pdf file system path
         :return: list of QuoteModel instances
         """
-        super().parse(path)
+        super().raise_error_if_cannot_ingest(path)
         command = r'{} "{}" "{}" -enc UTF-8' \
             .format('pdftotext', path, cls.txt_file_path)
         try:
