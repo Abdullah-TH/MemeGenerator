@@ -7,7 +7,6 @@ from .textIngestor import TextIngestor
 
 
 class PDFIngestor(IngestorInterface):
-
     allowed_extensions = ['pdf']
     txt_file_path = '_data/DogQuotes/DogQuotesPDF.txt'
 
@@ -22,13 +21,17 @@ class PDFIngestor(IngestorInterface):
         :return: list of QuoteModel instances
         """
         super().parse(path)
-        command = r'{} "{}" "{}" -enc UTF-8'.format('pdftotext', path, cls.txt_file_path)
+        command = r'{} "{}" "{}" -enc UTF-8' \
+            .format('pdftotext', path, cls.txt_file_path)
         try:
             subprocess.call(command, shell=True, stderr=subprocess.STDOUT)
             cls.__clean_txt_file()
             return TextIngestor.parse(cls.txt_file_path)
-        except Exception:
-            raise Exception('Command "pdftotext" not found, please install it first')
+        except Exception as e:
+            print(
+                str(e),
+                'Command "pdftotext" not found, please install it first'
+            )
 
     @classmethod
     def __clean_txt_file(cls):
@@ -40,7 +43,8 @@ class PDFIngestor(IngestorInterface):
         new_lines = []
         with open(cls.txt_file_path) as file:
             lines = file.readlines()
-            new_lines = [line.replace('"', '') for line in lines if not line.isspace()]
+            new_lines = [line.replace('"', '') for line in lines
+                         if not line.isspace()]
 
         with open(cls.txt_file_path, 'w') as file:
             file.writelines(new_lines)

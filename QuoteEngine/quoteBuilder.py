@@ -4,7 +4,14 @@ from .quoteModel import QuoteModel
 class QuoteBuilder:
 
     @classmethod
-    def parse_quote(cls, quotes, author_start, author_end, body_start, body_end):
+    def parse_quote(
+            cls,
+            quotes,
+            author_start,
+            author_end,
+            body_start,
+            body_end
+    ):
         """
         Given a list of strings, parse each string to a QuoteModel object.
         Each QuoteModel object needs an author string and body string.

@@ -14,10 +14,12 @@ class MemeEngine:
         Generate a meme image with overlaying text and author
 
         :param img_path: a path of the image you want to apply the text on
-        :param text: a string that will be drawn on the image as the body of the quote
-        :param author: a string that will be drawn on the image as the author of the quote
-        :param width: an int represent the width of the generated image in pixels (default 500px)
-        :param author:
+        :param text: a string that will be drawn on the image
+        as the body of the quote
+        :param author: a string that will be drawn on the image
+         as the author of the quote
+        :param width: an int represent the width of the
+        generated image in pixels (default 500px)
 
         :return: list of QuoteModel instances
 
@@ -48,6 +50,7 @@ class MemeEngine:
                       stroke_width=1,
                       stroke_fill='black')
 
-        output_image_path = self.output_path + f'/meme{randrange(1000)}.{img_extension}'
+        output_image_path = self.output_path \
+            + f'/meme{randrange(1000)}.{img_extension}'
         img.save(output_image_path)
         return output_image_path
