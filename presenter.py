@@ -9,7 +9,13 @@ from MemeEngine import MemeEngine
 class Presenter:
 
     @classmethod
-    def generate_meme(cls, output_path, image_path=None, body=None, author=None):
+    def generate_meme(
+            cls,
+            output_path,
+            image_path=None,
+            body=None,
+            author=None
+    ):
         """ Generate a meme given an path and a quote """
         img = None
         quote = None
