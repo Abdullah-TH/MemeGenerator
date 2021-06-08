@@ -12,7 +12,7 @@ mypy-extensions==0.4.3
 numpy==1.18.1
 pandas==1.0.1
 pdfminer.six==20200124
-Pillow==8.1.1
+Pillow==8.2.0
 pycryptodome==3.9.7
 PyPDF2==1.26.0
 python-dateutil==2.8.1
